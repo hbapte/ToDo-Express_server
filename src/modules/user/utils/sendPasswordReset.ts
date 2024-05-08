@@ -41,7 +41,7 @@ const sendPasswordResetEmail = async (email: string, resetToken: string, names: 
          
          
           <p>Thank you!</p> 
-          <p>My brand Team</p>
+          <p>To Do APP Team</p>
         
         
 `,

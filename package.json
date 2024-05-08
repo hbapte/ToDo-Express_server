@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "my brand backend services",
+  "description": "To Do App backend services",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",

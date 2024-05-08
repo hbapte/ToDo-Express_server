@@ -5,9 +5,9 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'My Brand API',
+      title: 'To Do App API',
       version: '1.0.0',
-      description: 'My Brand API Documentation',
+      description: 'To Do App API Documentation',
     },
     servers: [
       {

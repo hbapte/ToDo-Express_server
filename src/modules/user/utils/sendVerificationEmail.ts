@@ -10,7 +10,7 @@ const sendVerificationEmail = async (email: string, verificationToken: string, n
   expirationTime.setHours(expirationTime.getHours() + 24);
 
   // URL with token and expiration tim
-  const verificationUrl = `https://my-brand-oxuh.onrender.com/api/auth/verify?token=${verificationToken}&expires=${expirationTime.getTime()}`;
+  const verificationUrl = `https://todo-express-server-0yda.onrender.com/api/auth/verify?token=${verificationToken}&expires=${expirationTime.getTime()}`;
 
 
   const transporter = nodemailer.createTransport({
@@ -24,10 +24,10 @@ const sendVerificationEmail = async (email: string, verificationToken: string, n
   const mailOptions = {
     from: 'ijbapte@gmail.com',
     to: email,
-    subject: 'Email Verification - My Brand',
+    subject: 'Email Verification - To Do App',
     html: `
       <p>Hello, ${names}</p>
-      <p>Thanks for getting started with My brand!</p>
+      <p>Thanks for getting started with To Do APP!</p>
       <p>I need a little more information to complete your registration, including a confirmation of your email address.</p>
       <p>Please click on the following link to verify your email address:</p>
       <p><a href="${verificationUrl}">Verify Email</a></p>
@@ -39,7 +39,7 @@ const sendVerificationEmail = async (email: string, verificationToken: string, n
 
 
       <p>Thank you!</p> 
-      <p>My brand Team</p>
+      <p>To Do App Team</p>
     `,
   };
 

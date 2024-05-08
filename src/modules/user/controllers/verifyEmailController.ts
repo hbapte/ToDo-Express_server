@@ -21,7 +21,7 @@ const verifyEmailController = async (req: Request, res: Response) => {
       user.emailVerificationToken = ''; 
       await user.save();
 
-      res.redirect('https://my-brand-client.vercel.app/login.html?emailVerifiedSuccessfully=true');
+      res.redirect('https://todo-react-eight-eta.vercel.app/login?emailVerifiedSuccessfully=true');
   } catch (error) {
       console.error('Error verifying email:', error);
       res.status(500).json({ error: 'Internal server error' });
