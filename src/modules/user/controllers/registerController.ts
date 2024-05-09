@@ -12,7 +12,7 @@ const registerController = async (req: Request, res: Response) => {
     }
     const verificationToken = Math.random().toString(36).substring(7);
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ names, email, username, password: hashedPassword, emailVerificationToken: verificationToken });
+    const newUser = new User({ names, email, username, password: hashedPassword, emailVerificationToken: verificationToken, emailVerificationTokenCreated: new Date() });
     await newUser.save();
     await sendVerificationEmail(email, verificationToken, names);
     res.status(201).json({ message: 'User registered successfully. Please check your email for verification.' });

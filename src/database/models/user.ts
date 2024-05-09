@@ -7,6 +7,7 @@ interface User extends Document {
     password: string;
     emailVerified: boolean;
     emailVerificationToken: string;
+    emailVerificationTokenCreated: Date;
     resetPasswordToken?: string;
     resetPasswordExpires?: Date;
 }
@@ -18,6 +19,7 @@ const userSchema: Schema = new Schema({
     password: { type: String, required: true},
     emailVerified: { type: Boolean, default: false },
     emailVerificationToken: { type: String },
+    emailVerificationTokenCreated: { type: Date, default: Date.now },
     resetPasswordToken: String,
     resetPasswordExpires: Date,
       

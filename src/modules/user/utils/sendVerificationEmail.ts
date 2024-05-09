@@ -5,11 +5,8 @@ dotenv.config();
 
 
 const sendVerificationEmail = async (email: string, verificationToken: string, names: string) => {
-  // Expiration time (24 hours from now)
   const expirationTime = new Date();
   expirationTime.setHours(expirationTime.getHours() + 24);
-
-  // URL with token and expiration tim
   const verificationUrl = `https://todo-express-server-0yda.onrender.com/api/auth/verify?token=${verificationToken}&expires=${expirationTime.getTime()}`;
 
 
@@ -28,8 +25,8 @@ const sendVerificationEmail = async (email: string, verificationToken: string, n
     html: `
       <p>Hello, ${names}</p>
       <p>Thanks for getting started with To Do APP!</p>
-      <p>I need a little more information to complete your registration, including a confirmation of your email address.</p>
       <p>Please click on the following link to verify your email address:</p>
+      
       <p><a href="${verificationUrl}">Verify Email</a></p>
       <p>If that doesn't work, copy and paste the following link in your browser:</p>
 
