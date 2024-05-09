@@ -4,18 +4,13 @@ import { Request, Response } from 'express';
 import User from '../../../database/models/user';
 
 const verifyResetTokenController = async (req: Request, res: Response) => {
-  const { token } = req.query;
+  const { token, expires } = req.query;
   try {
-    // Find user with the provided reset token
-    const user = await User.findOne({ resetPasswordToken: token });
+    // Find user with the provided reset token and ensure it's not expired
+    const user = await User.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: new Date(Number(expires)) } });
     if (!user) {
-      // Invalid token, redirect back to forgot password form
-      return res.redirect('/forgot-password?error=Invalid token');
-    }
-    // Check if reset token is expired
-    if (user.resetPasswordExpires && user.resetPasswordExpires < new Date()) {
-      // Token expired, redirect back to forgot password form
-      return res.redirect('/forgot-password?error=Reset token has expired');
+      // Invalid token or expired, redirect back to forgot password form
+      return res.redirect('/forgot-password?error=Invalid or expired token');
     }
     // Token is valid, redirect to reset password form
     return res.redirect(`/reset-password-form?token=${token}`);

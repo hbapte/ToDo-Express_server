@@ -7,16 +7,11 @@ import bcrypt from 'bcrypt';
 const resetPasswordController = async (req: Request, res: Response) => {
   const { token, newPassword } = req.body;
   try {
-    // Find user with the provided reset token
-    const user = await User.findOne({ resetPasswordToken: token });
+    // Find user with the provided reset token and ensure it's not expired
+    const user = await User.findOne({ resetPasswordToken: token, resetPasswordExpires: { $gt: new Date() } });
     if (!user) {
       // Invalid or expired reset password token
       return res.status(404).json({ error: 'Invalid or expired reset password token' });
-    }
-    // Check if reset token is expired
-    if (user.resetPasswordExpires && user.resetPasswordExpires < new Date()) {
-      // Token expired
-      return res.status(400).json({ error: 'Reset password token has expired' });
     }
     // Hash the new password
     const hashedPassword = await bcrypt.hash(newPassword, 10);

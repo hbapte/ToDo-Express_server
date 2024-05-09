@@ -1,4 +1,3 @@
-
 // sendPasswordResetEmail.ts
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
@@ -6,7 +5,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const sendPasswordResetEmail = async (email: string, resetToken: string, names: string) => {
-  const resetTokenUrl = `https://todo-express-server-0yda.onrender.com/api/auth//verify-reset-token?token=${resetToken}`;
+  const expirationTime = new Date();
+  expirationTime.setHours(expirationTime.getHours() + 24); // Set expiration time to 24 hours from now
+
+  const resetTokenUrl = `https://todo-express-server-0yda.onrender.com/api/auth/verify-reset-token?token=${resetToken}&expires=${expirationTime.getTime()}`;
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
