@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const sendResetPasswordEmail = async (email: string, resetToken: string) => {
-    const resetUrl = `http://localhost:5500/api/auth/verify-reset-token?token=${resetToken}`;
+    const resetUrl = `https://todo-express-server-0yda.onrender.com/api/auth/verify-reset-token?token=${resetToken}`;
   
     const transporter = nodemailer.createTransport({
       service: 'gmail',
