@@ -5,7 +5,7 @@ dotenv.config();
 
 const sendResetPasswordEmail = async (email: string, resetToken: string) => {
     const resetUrl = `https://todo-express-server-0yda.onrender.com/api/auth/verify-reset-token?token=${resetToken}`;
-    
+
   
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -24,6 +24,9 @@ const sendResetPasswordEmail = async (email: string, resetToken: string) => {
         <p>Please click on the following link, or paste this into your browser to complete the process:</p>
         <p><a href="${resetUrl}">${resetUrl}</a></p>
         <p>If you did not request this, please ignore this email and your password will remain unchanged.</p>
+
+        <p>Thanks!</p>
+        <p>To Do APP team</p>
       `,
     };
   
